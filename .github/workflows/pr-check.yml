@@ -1,0 +1,20 @@
+name: pr-check.yml
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Встановлення залежностей
+        run: npm ci
+
+      - name: Линтинг
+        run: npm run lint
+
+      - name: Запуск тестів
+        run: npm run test
+
